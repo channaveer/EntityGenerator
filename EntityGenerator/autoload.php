@@ -15,7 +15,6 @@ function autoload($className)
         $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
     }
     $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
-    echo $fileName.'<br>';
     require $fileName;
 }
 spl_autoload_register('autoload');
