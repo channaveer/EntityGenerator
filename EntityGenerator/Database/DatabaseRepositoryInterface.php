@@ -13,6 +13,6 @@ interface DatabaseRepositoryInterface {
 	public function getDatabases();
 
 	/* Get all the tables related to specific database */
-	public function getTables($dtabase);
+	public function getTables($database);
 }
  

@@ -8,10 +8,24 @@ namespace EntityGenerator\Database;
  * @Description - Interface for connecting to Database
  */
 interface DatabaseConnectionInterface{
-	/**
-	 * Gets the connection to database
-	 * @return connection to database
-	 */	
-	 
-	public static function getConnection($database = 'mysql');
+		
+	public  function setDatabase($database);
+	public  function getDatabase();
+
+	public  function setHost($host);
+	public  function getHost();
+
+	public  function setDatabaseName($databaseName);
+	public  function getDatabaseName();
+
+	public  function setUser($user);
+	public  function getUser();
+
+	public  function setPassword($password);
+	public  function getPassword();
+	
+	public  function setCharset($charset);
+	public  function getCharset();
+
+	public  function getConnection();
 }
