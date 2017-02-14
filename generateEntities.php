@@ -1,7 +1,10 @@
 <?php
 require_once 'init.php';
 $directoryName = 'Entity';
-
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+ini_set('max_execution_time', 0);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$databaseRepository = new EntityGenerator\Database\DatabaseRepository($connection);
@@ -17,6 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$coloumnNames = $databaseRepository->getColoumnNamesOfTable($table);
 		generateEntityClass($table, $coloumnNames, $database);
 	}
+	header("Location:index.php?success=Successfully Generated Entities");
 }else{
 	echo 'Error in generating entities.';
 }
@@ -45,7 +49,6 @@ class {$studlyTableName}{
 	}
 $entityClass .= "}";
 	writeFile($database,$studlyTableName.'.php', $entityClass);
-	header("Location:index.php?success=Successfully Generated Entities");
 }
 
 function getGetter($coloumnName){
@@ -79,7 +82,9 @@ function writeFile($database,$fileName, $content){
 	if (!file_exists(__DIR__."/{$directoryName}/{$database}/")) {
 	    mkdir(__DIR__."/{$directoryName}/{$database}/", 0777, true);
 	}
-	define('FILE_WRITE_PATH', __DIR__."/{$directoryName}/{$database}/");
+	if(!defined('FILE_WRITE_PATH')){
+		define('FILE_WRITE_PATH', __DIR__."/{$directoryName}/{$database}/");
+	}
 	if($fh = fopen(FILE_WRITE_PATH.$fileName,'w+')){
 		if(is_writable(FILE_WRITE_PATH.$fileName)){
 			fwrite($fh, $content);
