@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	}
 	header("Location:index.php?success=Successfully Generated Entities");
 }else{
-	echo 'Error in generating entities.';
+	header("Location:index.php?error=Oops! Error in generating entities.");
 }
 
 function generateEntityClass($tableName, $coloumnNames, $database){

@@ -31,7 +31,7 @@ $databases = $databaseRepository->getDatabases($connection);
 					if(isset($_GET['error'])){
 						echo '<div class="alert alert-danger">
 							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						  	<strong>Error!</strong> '.$_GET['error'].'
+						  	'.$_GET['error'].'
 						</div>';
 					}
 
