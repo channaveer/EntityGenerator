@@ -7,8 +7,8 @@ $databaseConnection = new DatabaseConnection();
 
 $connection = $databaseConnection
 				->setDatabase('mysql')
-				->setHost('localhost')
+				->setHost('127.0.0.1')
 				->setUser('root')
 				->setPassword('')
-	                       // ->setPort()
+	            ->setPort(3306)
 				->getConnection();
