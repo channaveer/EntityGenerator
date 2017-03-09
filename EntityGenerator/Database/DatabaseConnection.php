@@ -8,6 +8,7 @@ class DatabaseConnection implements DatabaseConnectionInterface{
 	private $databaseName;
 	private $user;
 	private $password;
+	private $port;
 	private $charset;
 	private $host;
 
@@ -67,12 +68,38 @@ class DatabaseConnection implements DatabaseConnectionInterface{
 		return $this->charset;
 	}
 	
+	/**
+     * Gets the value of port.
+     *
+     * @return mixed
+     */
+    public function getPort()
+    {
+        return $this->port;
+    }
+
+    /**
+     * Sets the value of port.
+     *
+     * @param mixed $port the port
+     *
+     * @return self
+     */
+    public function setPort($port)
+    {
+        $this->port = $port;
+        return $this;
+    }
+
 
 	public  function getConnection(){
 		switch($this->database){
 			case 'mysql' : 
+				if($this->port == NULL){
+					$this->setPort(3306);
+				}
 				try{
-					$this->connection = new \PDO($this->database.":host=".$this->host, $this->user, $this->password);
+					$this->connection = new \PDO($this->database.":host=".$this->host.';port='.$this->port, $this->user, $this->password);
 					$this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 					return $this->connection;
 				}catch(\PDOException $e){

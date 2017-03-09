@@ -27,5 +27,8 @@ interface DatabaseConnectionInterface{
 	public  function setCharset($charset);
 	public  function getCharset();
 
+	public  function setPort($port);
+	public  function getPort();
+
 	public  function getConnection();
 }
